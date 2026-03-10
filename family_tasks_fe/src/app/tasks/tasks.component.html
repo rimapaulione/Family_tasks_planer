@@ -1,0 +1,23 @@
+@if (isAddingTask) {
+  <app-modal [userId]="userId" (close)="onCloseAddTask()" />
+}
+<app-card>
+  <header>
+    <h4>{{ name }}'s Tasks</h4>
+    <menu>
+      <button (click)="onStartAddTask()">Add task</button>
+    </menu>
+  </header>
+
+  @if (selectedUserTasks.length === 0) {
+    <p>Add task!</p>
+  } @else {
+    <ul>
+      @for (task of selectedUserTasks; track task.id) {
+        <li>
+          <app-task [task]="task" />
+        </li>
+      }
+    </ul>
+  }
+</app-card>
